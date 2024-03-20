@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Methods</title>
+</head>
+<body>
+    <h1>HTTP Task</h1>
+    
+    
+    <form action="/submit" method="post">
+        <h3>POST Task</h3>
+        <label for="post-data">Enter The Data:</label>
+        <input type="text" id="post-data" name="post-data">
+        <button type="submit">Submit</button>
+    </form>
+
+    
+    <h3>GET Task</h3>
+    <p>Click the below link:</p>
+    <a href="/data?param1=value1&param2=value2">Send Request</a>
+
+    
+    <h3>PUT Task</h3>
+    <button onclick="sendPutRequest()">Send Request</button>
+
+
+    <h3>DELETE Task</h3>
+    <button onclick="sendDeleteRequest()">Send Request</button>
+
+  
+    <script>
+        function sendPutRequest() {
+        
+            fetch('/resource', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: 'This is a PUT request' })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('PUT request successful');
+                } else {
+                    console.error('PUT request failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function sendDeleteRequest() {
+            
+            fetch('/resource', {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Request Delete Successfully');
+                } else {
+                    console.error('Delete Request Failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
